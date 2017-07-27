@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dashboard</title>
+    <%= csrf_meta_tags %>
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <%= stylesheet_link_tag    'dashboard', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'dashboard', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body class="<%= controller.controller_name %>">
+    <div id="banner">
+      <span class="title">Dashboard</span>
+      <li><%= link_to "Logout", destroy_dashboard_admin_session_path, :method => :delete  %></li>
+    </div>
+    <div id="columns">
+      <div id="side">
+        <ul>
+
+          <li><%= link_to "View Items", dashboard_items_path %></li>
+
+          <hr>
+          <li><%= link_to "Manage Orders", dashboard_orders_path %></li>
+          <hr>
+          <li><%= link_to "View Bundled Items", dashboard_bundled_items_path %></li>
+          <hr>
+        </ul>
+      </div>
+      <div id="main">
+        <%= yield %>
+      </div>
+    </div>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  </body>
+</html>

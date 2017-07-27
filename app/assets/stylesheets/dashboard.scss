@@ -1,0 +1,94 @@
+/*
+ *
+ *= require_tree .
+ *= require_self
+ */
+body, body > p, body > ol, body > ul, body > td {margin: 8px !important}
+
+#banner {
+  position: relative;
+  min-height: 40px;
+  background: black;
+  padding: 10px;
+  border-bottom: 2px solid;
+  font: small-caps 40px/40px "Times New Roman", serif;
+  color: grey;
+  text-align: center;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 192px;
+  }
+}
+
+#notice {
+  color: #000 !important;
+  border: 2px solid red;
+  padding: 1em;
+  margin-bottom: 2em;
+  background-color: #f0f0f0;
+  font: bold smaller sans-serif;
+}
+
+#notice:empty {
+  display: none;
+}
+
+#columns {
+  background: black;
+  display: flex;
+
+  #main {
+    padding: 1em;
+    background: white;
+    flex: 1;
+  }
+
+  #side {
+    padding: 1em 2em;
+    background: black;
+
+    ul {
+      padding: 0;
+
+      li {
+        list-style: none;
+
+        a {
+          color: white;
+          font-size: small;
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 800px) {
+  #columns {
+    flex-direction: column-reverse;
+  }
+}
+
+@media all and (max-width: 500px) {
+  #banner {
+    height: 1em;
+  }
+
+  #banner .title {
+    display: none;
+  }
+}
+
+.orders {
+  .item_price, .total_line {
+    text-align: right;
+  }
+
+  .total_line .total_cell {
+    font-weight: bold;
+    border-top: 1px solid #595;
+  }
+}
+

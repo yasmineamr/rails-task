@@ -1,0 +1,91 @@
+<%= form_with(model: [:dashboard, bundled_item], local: true) do |form| %>
+  <% if bundled_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(bundled_item.errors.count, "error") %> prohibited this bundled_item from being saved:</h2>
+
+      <ul>
+      <% bundled_item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :discounted_price %>
+    <%= form.number_field :discounted_price, step: :any %>
+  </div>
+
+  <table>
+
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Item Type</th>
+        <th colspan="1"></th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total Price</th>
+        <% if bundled_item.id %>
+          <th>Delete</th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= form.fields_for :set_items do |ff| %>
+        <% item = ff.object.item %>
+        <tr>
+         <td> <%=ff.label :title, item.title %> </td>
+          <td> <%= ff.label :item_type, item.item_type.try(:titleize) %> </td>
+          <td> <%= ff.hidden_field :item_id, :value => item.id %> </td>
+          <td> <%= ff.number_field :quantity, class: 'qtn_field' %> </td>
+          <td> <%=ff.label :price, number_to_currency(item.price), class: 'price' %> </td>
+          <td> <%=ff.label :price, number_to_currency(ff.object.quantity || 0 * item.price), class: 'item_total' %> </td>
+          <% if bundled_item.id %>
+            <td> <%= ff.check_box :_destroy %> </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

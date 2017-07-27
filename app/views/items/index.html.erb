@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+<% if @error %>
+	<p id="notice"><%= @error %></p>
+<% else %>
+	<h1>Categories</h1>
+	<% Item.item_types.keys.each do |category| %>
+	  <%= link_to category.titleize, category_items_path(category: category) %>
+	<% end %>
+<% end %>

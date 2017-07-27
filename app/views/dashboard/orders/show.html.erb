@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User's Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>User's Email:</strong>
+  <%= @user.email %>
+</p>
+
+
+
+<table>
+	<% @order.line_items.each do |line_item| %> 
+		<tr>
+			<td><%= line_item.quantity %>&times;</td>
+			<td><%= link_to line_item.item.title, dashboard_item_path(line_item.item.id) %></td>
+			<td class="item_price"><%= number_to_currency(line_item.total_price) %></td>
+		</tr>
+	<% end %>
+
+	<tr class="total_line">
+	<td colspan="2">Total</td>
+	<td class="total_cell"><%= number_to_currency(@order.total_price) %></td>
+	</tr>
+</table>

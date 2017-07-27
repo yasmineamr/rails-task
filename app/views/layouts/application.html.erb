@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Task</title>
+    <%= csrf_meta_tags %>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  </head>
+
+  <body class="<%= controller.controller_name %>">
+    <div id="bannerr">
+      <%= link_to "Home", landing_index_path %>
+
+      <% unless current_user %>
+        <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
+      <% else %>
+      <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+      <% end %>
+
+      <%= form_tag search_items_url, method: :get, class: "form-inline" do %>
+        <div>
+          <%= text_field_tag :query, params[:query], class: "form-control", id: "item_search"%>
+          <%= submit_tag "Search"%>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="columns">
+      <div class="sidee">
+        <div id="cart">
+          <% if current_user %>
+            <%= render @cart %>
+          <% end %>
+        </div>
+      </div>
+
+      <div id="main">
+        <%= yield %>
+      </div>
+    </div>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  </body>
+</html>

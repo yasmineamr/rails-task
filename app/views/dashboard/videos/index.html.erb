@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Videos And Trailers</h1>
+<br>
+<% if @videos.count == 0 %>
+  <p>No videos to show </p>
+<% else %>
+
+  <% @videos.each do |video| %>
+    <div>
+      <%= youtube_video video.url %>
+      <%= link_to 'Delete', dashboard_item_video_path(id: video.id, item_id: @item), data: { confirm: 'Are you sure?' }, method: :delete %> 
+      <br>
+    </div>
+  <% end %>
+
+<% end %>
+
+
+<br>
+
+<%= link_to 'Add Video', new_dashboard_item_video_path(item_id: @item) %>
+

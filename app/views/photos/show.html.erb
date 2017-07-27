@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <div class="col-xs-9">
+    <%= image_tag @photo.file.display if @photo.file.present? %>
+  </div>
+
+  <div class="col-xs-3">
+    <p>
+      <%= link_to 'Back', item_photos_path(item_id: @item) %>
+    </p>
+  </div>
+</div>

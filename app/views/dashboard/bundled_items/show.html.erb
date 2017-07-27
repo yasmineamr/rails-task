@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @bundled_item.title %>
+</p>
+
+<p>
+  <strong>Discounted price:</strong>
+  <%= number_to_currency(@bundled_item.discounted_price) %>
+</p>
+
+<table>
+  <% @items.each do |set_item| %> 
+    <tr>
+	  <td><%= set_item.quantity %>&times;</td>
+	    <td><%= link_to set_item.item.title, dashboard_item_path(set_item.item.id) %></td>
+	  </tr>
+  <% end %>
+</table>
+
+
+
+<%= link_to 'Edit', edit_dashboard_bundled_item_path(@bundled_item) %> |
+<%= link_to 'Back', dashboard_bundled_items_path %>

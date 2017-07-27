@@ -1,0 +1,86 @@
+<p id="notice"><%= notice %></p>
+<% if @error %>
+	<p id="notice"><%= @error %></p>
+<% else %>
+	<h1>Categories</h1>
+	<% Item.item_types.keys.each do |category| %>
+	  <%= link_to category.titleize, category_items_path(category: category) %>
+	<% end %>
+  <br>
+  <br>
+  <hr>
+
+  <h1>Featured Items</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Type</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @featured_items.each do |item| %>
+        <tr>
+          <td><%= item.title %></td>
+          <td><%= item.description %></td>
+          <td><%= number_to_currency(item.price) %></td>
+          <td><%= item.item_type.try(:titleize) %></td>
+          <td><%= link_to 'Show', item %></td>
+					<% if current_user %>
+						<td> <%= button_to 'Add To Cart', line_items_path(item_id: item.id), remote: true %> </td>
+					<% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+  <br>
+  <hr>
+
+  <h1>Offers</h1>
+    <% @bundled_items.each do |bundled_item| %>
+
+      <table>
+        <tr> 
+          <td><%= bundled_item.title %></td>
+          <td><%= number_to_currency(bundled_item.discounted_price) %></td>
+          <td><%= link_to 'View Offer', bundled_item_path(bundled_item) %></td>
+        </tr>
+
+      </table>
+
+    <% end %>
+
+
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

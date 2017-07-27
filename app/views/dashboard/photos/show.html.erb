@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <div class="col-xs-9">
+    <%= image_tag(@photo.file.display) if @photo.file.present? %>
+  </div>
+
+  <div class="col-xs-3">
+    <p>
+      <%= link_to 'Delete', dashboard_item_photo_path(id: @photo.id, item_id: @item), confirm: 'Are you sure?', method: :delete %> |
+      <%= link_to 'Back', dashboard_item_photos_path(item_id: @item) %>
+    </p>
+  </div>
+</div>

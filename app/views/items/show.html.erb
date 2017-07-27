@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @item.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @item.description %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @item.price %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @item.item_type %>
+</p>
+
+<%= link_to 'Photo Gallery', item_photos_path(item_id: @item.id) %> |
+<%= link_to 'Trailers & Videos', item_videos_path(item_id: @item.id) %>
+
+<h3>Reviews: </h3>
+  <% if @reviews.count != 0 %>
+    <% @reviews.each do |review| %>
+      <%= User.find(review.user_id).name %> : Rated <%= review.rate %> |
+      <%= review.text %>
+      <% if current_user && current_user.id == review.user_id %>
+        <td><%= link_to 'Edit', edit_item_review_path(id:review,item_id: @item.id) %></td> |
+        <td><%= link_to 'Delete', item_review_path(id:review,item_id: @item.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+      <hr>
+    <% end %>
+  <% else %>
+    <p>No Reviews.</p>
+  <% end %>
+
+  <% if current_user %>
+  <%= render :partial => 'reviews/form', locals: { review: @review, item: @item } %>
+  <% end %>
+
+share on facebook: 
+  <%= social_share_button_tag(current_user ? current_user.share_text : '', :url => "http://localhost:3000/items/#{@item.id}") %>
+
+<% if current_user %>
+  <%= button_to 'Add To Cart', line_items_path(item_id: @item.id) %> |
+<% end %>
+<%= link_to 'Back', landing_index_path %>

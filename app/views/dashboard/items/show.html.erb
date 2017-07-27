@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @item.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @item.description %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @item.price %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @item.item_type %>
+</p>
+
+<p>
+  <strong>Is featured:</strong>
+  <%= @item.is_featured %>
+</p>
+<%= link_to 'Edit', edit_dashboard_item_path(@item) %> |
+
+<%= link_to 'Photo Gallery', dashboard_item_photos_path(item_id: @item.id) %> |
+<%= link_to 'Trailers & Videos', dashboard_item_videos_path(@item) %>
+
+<h3>Reviews: </h3>
+  <% if @reviews.count != 0 %>
+    <% @reviews.each do |review| %>
+      <%= User.find(review.user_id).name %> : Rated <%= review.rate %> |
+      <%= review.text %>
+        <td><%= link_to 'Delete', dashboard_item_review_path(id:review,item_id: @item.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <hr>
+    <% end %>
+  <% else %>
+    <p>No Reviews.</p>
+  <% end %>
+
+<%= link_to 'Back', category_dashboard_items_path(category: @item.item_type) %>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  item: one
+  user: one
+  text: MyText
+  rate: 1
+
+two:
+  item: two
+  user: two
+  text: MyText
+  rate: 1

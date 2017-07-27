@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+<% if @error %>
+  <p id="notice"><%= @error %></p>
+<% else %>
+  <h1>Items</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @items.each do |item| %>
+        <tr>
+          <td><%= item.title %></td>
+          <td><%= item.description %></td>
+          <td><%= number_to_currency(item.price) %></td>
+          <!-- <td><%= item.item_type.try(:titleize) %></td> -->
+          <!-- <td><%= item.is_featured %></td> -->
+          <td><%= link_to 'Show', item %></td>
+          <% if current_user %>
+            <td><%= button_to 'Add To Cart', line_items_path(item_id: item.id) %></td>
+          <% end %>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+<% end %>

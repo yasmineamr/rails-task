@@ -1,0 +1,35 @@
+<h3>Add Review: </h3>
+<%= form_with(model: [@item, review], local: true) do |form| %>
+  <% if review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
+
+      <ul>
+      <% review.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= form.label :rate %>  <%= form.label :rate, "1", value: 1  %>
+    <%= form.radio_button :rate, 1 %>
+    <%= form.label :rate, "2", value: 2 %>
+    <%= form.radio_button :rate, 2 %>
+    <%= form.label :rate, "3", value: 3  %>
+    <%= form.radio_button :rate, 3 %>
+    <%= form.label :rate, "4", value: 4  %>
+    <%= form.radio_button :rate, 4 %>
+    <%= form.label :rate, "5", value: 5  %>
+    <%= form.radio_button :rate, 5 %>
+  </div>
+  <div class="field">
+    <%= form.label :text %>
+    <%= form.text_area :text, rows: 10, cols: 60  %>
+  </div>
+  <%= form.hidden_field :item_id, :value => item.id %>
+  <!-- <p>ITEM!!  <%= @item.id %> </p> -->
+  <div class="actions">
+    <%= form.submit 'Submit Review' %>
+  </div>
+<% end %>

@@ -1,0 +1,25 @@
+<%= form_with(model: [:dashboard, @item, @video], local: true) do |form| %>
+  <% if @video.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@video.errors.count, "error") %> prohibited this @video from being saved:</h2>
+
+      <ul>
+      <% @video.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :url %>
+    <%= form.text_area :url, rows: 1, cols: 60 %>
+  </div>
+
+  <%= form.hidden_field :item_id, :value => @item %>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

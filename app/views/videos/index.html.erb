@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Videos And Trailers</h1>
+<br>
+<% if @videos.count == 0 %>
+  <p>No videos to show </p>
+<% else %>
+  <% @videos.each do |video| %>
+    <div class="col-xs-4">
+      <%= youtube_video video.url %>
+    </div>
+  <% end %>
+<% end %>

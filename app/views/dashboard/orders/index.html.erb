@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+<% if @error %>
+  <p id="notice"><%= @error %></p>
+<% else %>
+  <h1>Orders</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Order # </th>
+        <th>User's Email</th>
+        <th>Total</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= order.id %></td>
+          <td><%= User.find(order.user_id).email %></td>
+          <td><%= number_to_currency(order.total_price) %></td>
+          <td><%= link_to 'Show', dashboard_order_path(order) %></td>
+          <% if order.is_fulfilled %>
+            <td><%= link_to 'Mark As Unfulfilled', unfulfill_dashboard_order_path(order), data: { confirm: 'Are you sure?' } %></td>
+          <% else %>
+            <td><%= link_to 'Mark As Fulfilled', fulfill_dashboard_order_path(order), data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
