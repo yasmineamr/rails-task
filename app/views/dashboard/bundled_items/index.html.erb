@@ -1,29 +1,28 @@
-<p id="notice"><%= notice %></p>
 
 <h1>Bundled Items</h1>
-
-<table>
+<%= link_to 'Create Bundled Item', new_dashboard_bundled_item_path, class: 'btn btn-primary'  %>
+<br>
+<br>
+<table class="table">
   <thead>
     <tr>
       <th>Title</th>
       <th>Price</th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @bundled_items.each do |bundled_item| %>
       <tr>
-        <td><%= bundled_item.title %></td>
-        <td><%= bundled_item.discounted_price %></td>
-        <td><%= link_to 'Show', dashboard_bundled_item_path(bundled_item) %></td>
-        <td><%= link_to 'Edit', edit_dashboard_bundled_item_path(bundled_item) %></td>
-        <td><%= link_to 'Destroy', dashboard_bundled_item_path(bundled_item), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to bundled_item.title, dashboard_bundled_item_path(bundled_item) %></td>
+        <td><%= number_to_currency bundled_item.discounted_price %></td>
+        <td><%= link_to 'Edit', edit_dashboard_bundled_item_path(bundled_item), class: 'btn btn-default'  %></td>
+        <td><%= link_to 'Destroy', dashboard_bundled_item_path(bundled_item), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'  %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-<%= link_to 'Create Bundled Item', new_dashboard_bundled_item_path %>
-
+<br>

@@ -1,10 +1,9 @@
-<p id="notice"><%= notice %></p>
 <% if @error %>
-  <p id="notice"><%= @error %></p>
+  <p class="alert alert-danger"><%= @error %></p>
 <% else %>
   <h1>Orders</h1>
 
-  <table>
+  <table class="table">
     <thead>
       <tr>
         <th>Order # </th>
@@ -20,11 +19,11 @@
           <td><%= order.id %></td>
           <td><%= User.find(order.user_id).email %></td>
           <td><%= number_to_currency(order.total_price) %></td>
-          <td><%= link_to 'Show', dashboard_order_path(order) %></td>
+          <td><%= link_to 'Show', dashboard_order_path(order), class: 'btn btn-default' %></td>
           <% if order.is_fulfilled %>
-            <td><%= link_to 'Mark As Unfulfilled', unfulfill_dashboard_order_path(order), data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to 'Mark As Unfulfilled', unfulfill_dashboard_order_path(order), data: { confirm: 'Are you sure?' }, class: 'btn btn-success' %></td>
           <% else %>
-            <td><%= link_to 'Mark As Fulfilled', fulfill_dashboard_order_path(order), data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to 'Mark As Fulfilled', fulfill_dashboard_order_path(order), data: { confirm: 'Are you sure?' }, class: 'btn btn-primary' %></td>
           <% end %>
         </tr>
       <% end %>

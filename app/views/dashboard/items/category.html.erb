@@ -1,10 +1,13 @@
-<p id="notice"><%= notice %></p>
 <% if @error %>
-  <p id="notice"><%= @error %></p>
+  <p id="error_explanation" class="alert alert-danger"><%= @error %></p>
 <% else %>
-  <h1>Items</h1>
+  <h1><%= @category.titleize %></h1>
 
-  <table>
+  <div class="form-group">
+    <%= link_to 'New Item', new_dashboard_item_path, class: 'btn btn-primary' %>
+  </div>
+
+  <table class="table">
     <thead>
       <tr>
         <th>Title</th>
@@ -18,27 +21,19 @@
     <tbody>
       <% @items.each do |item| %>
         <tr>
-          <td><%= item.title %></td>
+          <td><%= link_to item.title, dashboard_item_path(item) %></td>
           <td><%= item.description %></td>
-          <td><%= item.price %></td>
+          <td><%= number_to_currency item.price %></td>
           <!-- <td><%= item.item_type.try(:titleize) %></td> -->
           <% if item.is_featured %>
             <td> Yes </td>
           <% else %>
             <td> No </td>
           <% end %>
-          <td><%= link_to 'Show', dashboard_item_path(item) %></td>
-            <td><%= link_to 'Edit', edit_dashboard_item_path(item) %></td>
-            <td><%= link_to 'Destroy', [:dashboard, item], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-
-
+          <td><%= link_to 'Edit', edit_dashboard_item_path(item), class: 'btn btn-default' %></td>
+          <td><%= link_to 'Destroy', [:dashboard, item], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
-
-  <br>
-
-  <%= link_to 'New Item', new_dashboard_item_path %>
-
 <% end %>

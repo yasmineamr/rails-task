@@ -1,3 +1,3 @@
 class Dashboard::SessionsController < ::Devise::SessionsController
-  layout false
+  layout 'dashboard'
 end

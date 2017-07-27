@@ -1,6 +1,7 @@
-<p id="notice"><%= notice %></p>
 
 <h1>Photo Gallery</h1>
+<%= link_to 'Add Photo', new_dashboard_item_photo_path(item_id: @item), class: "btn btn-primary" %>
+<br>
 <br>
 <% if @photos.count == 0 %>
   <p>No Photos to show </p>
@@ -10,7 +11,7 @@
       <% group.compact.each do |photo| %>
         <div class="col-xs-4">
           <%= image_tag photo.file.display if photo.file.present?%>
-          <h4><%= link_to 'View', dashboard_item_photo_path(id: photo.id, item_id: @item) %></h4>
+          <h4><%= link_to 'View', dashboard_item_photo_path(id: photo.id, item_id: @item), class: "btn btn-default" %></h4>
         </div>
       <% end %>
     </div>
@@ -19,5 +20,3 @@
 
 
 <br>
-
-<%= link_to 'Add Photo', new_dashboard_item_photo_path(item_id: @item) %>

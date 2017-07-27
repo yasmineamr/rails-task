@@ -62,18 +62,5 @@ gem 'mini_magick', '~> 4.3'
 gem 'omniauth-facebook'
 gem 'searchkick'
 gem 'social-share-button', '~> 0.3.1'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+gem 'bootstrap-sass'
+gem 'devise-bootstrap-views'

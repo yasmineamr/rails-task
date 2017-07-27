@@ -1,0 +1,7 @@
+.alert-notice {
+  @extend .alert-info !optional;
+}
+
+.alert-alert {
+  @extend .alert-danger !optional;
+}

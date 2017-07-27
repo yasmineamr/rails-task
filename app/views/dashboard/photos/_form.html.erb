@@ -1,6 +1,6 @@
 <%= form_with(model: [:dashboard, @item, photo], local: true) do |form| %>
   <% if photo.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="alert alert-danger">
       <h2><%= pluralize(photo.errors.count, "error") %> prohibited this photo from being saved:</h2>
 
       <ul>
@@ -13,13 +13,13 @@
 
   <div class="form-group">
     <%= form.label :file %>
-    <%= form.file_field :file %>
+    <%= form.file_field :file, required: true, class: 'form-control' %>
   </div>
 
   <%= form.hidden_field :item_id, :value => @item %>
 
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: 'btn btn-default' %>
   </div>
 <% end %>

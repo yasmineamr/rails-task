@@ -1,25 +1,26 @@
-<p id="notice"><%= notice %></p>
 
-<p>
+<div class="form-group">
   <strong>Title:</strong>
   <%= @bundled_item.title %>
-</p>
+</div>
 
-<p>
+<div class="form-group">
   <strong>Discounted price:</strong>
   <%= number_to_currency(@bundled_item.discounted_price) %>
-</p>
+</div>
 
-<table>
-  <% @items.each do |set_item| %> 
+<table class = "table">
+  <% @items.each do |set_item| %>
     <tr>
-	  <td><%= set_item.quantity %>&times;</td>
-	    <td><%= link_to set_item.item.title, dashboard_item_path(set_item.item.id) %></td>
+      <div class="well">
+	  <%= set_item.quantity %> &times;
+	    <%= link_to set_item.item.title, dashboard_item_path(set_item.item.id) %>
+    </div>
 	  </tr>
   <% end %>
 </table>
 
 
 
-<%= link_to 'Edit', edit_dashboard_bundled_item_path(@bundled_item) %> |
-<%= link_to 'Back', dashboard_bundled_items_path %>
+<%= link_to 'Edit', edit_dashboard_bundled_item_path(@bundled_item), class: 'btn btn-default' %>
+<br>

@@ -42,7 +42,8 @@ class Dashboard::ItemsController < DashboardController
   end
 
   def category
-    @items = Item.send params[:category]
+    @category = params[:category]
+    @items = Item.send @category
   end
 
   private
@@ -64,34 +65,3 @@ class Dashboard::ItemsController < DashboardController
       redirect_to dashboard_items_path, notice: 'Invalid method'
     end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
