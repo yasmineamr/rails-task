@@ -1,24 +1,21 @@
-# README
+# Ruby-on-rails Task
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A platform to manage digital entertainment store.
 
-Things you may want to cover:
+## Installation
 
-* Ruby version
+You can find an installation guide [here].
 
-* System dependencies
+* Ruby version: 2.3.1
+* Rails version: 5.1.2
 
-* Configuration
+## Usage
 
-* Database creation
+1. Clone the repo.
+2. At the terminal type
+`bundle install` then `rake db:seed` to create an admin and finally `rails s` to start the server
+3. Open browser on `http://localhost:3000`.
+To access the Administrator Dashboard open the browser on `http://localhost:3000/dashboard`
 
-* Database initialization
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+[here]: Installation
