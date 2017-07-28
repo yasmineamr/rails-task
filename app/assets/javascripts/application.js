@@ -11,10 +11,13 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require turbolinks
 
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
-//= require typeahead
+//= require bootstrap-sprockets
 //= require social-share-button
+//= require bundled_items
+//= require typeahead
 //= require_tree .
+//= require turbolinks

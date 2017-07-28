@@ -5,7 +5,9 @@ class CartsController < ApplicationController
 
   #when checkout
   def update
-    if @cart.update(cart_params)
+    if params[:cart][:address].blank?
+      render :checkout, notice: "Enter an address"
+    elsif @cart.update(cart_params)
       session[:cart_id] = nil
       OrderMailer.received(@cart, current_user).deliver_later
       redirect_to landing_index_path, notice: 'Thank you for your order.'
@@ -28,7 +30,10 @@ class CartsController < ApplicationController
   end
 
   private
+    def cart_params
+      params.require(:cart).permit(:address, :pay_type, :is_ordered)
 
+    end
     def invalid_cart
       logger.error "Attempt to access invalid cart #{params[:id]}"
       redirect_to landing_index_path, notice: 'Invalid cart'

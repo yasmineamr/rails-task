@@ -1,26 +1,21 @@
-<p id="notice"><%= notice %></p>
+<div class="thumbnail">
+    <div class="caption-full">
+        <h4 class="pull-right"> <%= number_to_currency @bundled_item.discounted_price %></h4>
+        <h4><%= @bundled_item.title %></h4>
+    </div>
+</div>
 
 
-<p>
-  <strong>Title:</strong>
-  <%= @bundled_item.title %>
-</p>
-
-<p>
-  <strong>Discounted price:</strong>
-  <%= number_to_currency(@bundled_item.discounted_price) %>
-</p>
-
-<table>
-  <% @items.each do |set_item| %> 
+<table class="table">
+  <% @items.each do |set_item| %>
     <tr>
-	    <td><%= set_item.quantity %>&times;</td>
+	    <td><%= set_item.quantity %>&nbsp;&nbsp;&times;</td>
 	    <td><%= link_to set_item.item.title, item_path(set_item.item.id) %></td>
 	  </tr>
   <% end %>
 </table>
 
 <% if current_user %>
-  <%= button_to 'Add To Cart', line_items_path(bundled_item_id: @bundled_item.id), remote: true %>
+  <%= button_to 'Add To Cart', line_items_path(bundled_item_id: @bundled_item.id), remote: true, class: "btn btn-success" %>
 <% end %>
-<%= link_to 'Back', landing_index_path %>
+<br>

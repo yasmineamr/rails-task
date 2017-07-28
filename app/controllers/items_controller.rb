@@ -12,7 +12,8 @@ class ItemsController < ApplicationController
   end
 
   def category
-    @items = Item.send params[:category]
+    @category = params[:category]
+    @items = Item.send @category 
   end
 
   def search
@@ -55,32 +56,3 @@ class ItemsController < ApplicationController
     redirect_to landing_index_path, notice: 'Invalid method'
   end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

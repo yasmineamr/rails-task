@@ -1,6 +1,6 @@
 
 <h2>Your Cart</h2>
-<table>
+<table class="table">
 
   <%= render cart.line_items %>
 
@@ -11,7 +11,7 @@
 
 </table>
 
-<%= link_to 'Empty cart', cart, method: :delete, data: { confirm: 'Are you sure?' } %>
-<%= link_to 'Checkout', checkout_cart_path(cart) %>
+<%= link_to 'Empty cart', cart, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+<%= link_to 'Checkout', checkout_cart_path(cart), class:"btn btn-primary" %>
 <br>
 <hr>

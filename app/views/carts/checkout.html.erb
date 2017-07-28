@@ -1,6 +1,6 @@
-<%= form_with(model: [@cart], local: true) do |form| %>
+<%= form_with(model: @cart, local: true) do |form| %>
   <% if @cart.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="alert alert-danger">
       <h2><%= pluralize(@cart.errors.count, "error") %> </h2>
 
       <ul>
@@ -11,20 +11,23 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :address %>
-    <%= form.text_area :address %>
+    <%= form.text_area :address, class: 'form-control', required: true %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :pay_type %>
-    <%= form.select :pay_type, options_for_select(Cart.pay_types.keys.map { |type| [type.titleize, type] }, @cart.pay_type || Cart.pay_types.keys.first), { prompt: 'Select a payment method' }, required: true %>
+    <%= form.select :pay_type, options_for_select(Cart.pay_types.keys.map { |type| [type.titleize, type] },
+                        @cart.pay_type || Cart.pay_types.keys.first),
+                        { prompt: 'Select a payment method' },
+                         required: true, class: 'form-control' %>
   </div>
 
   <%= form.hidden_field :is_ordered, :value => true %>
 
 
   <div class="actions">
-    <%= form.submit "Place Order" %>
+    <%= form.submit "Place Order", class: "btn btn-success" %>
   </div>
 <% end %>

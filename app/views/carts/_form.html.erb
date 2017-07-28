@@ -1,6 +1,6 @@
 <%= form_with(model: cart, local: true) do |form| %>
   <% if cart.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="alert alert-danger">
       <h2><%= pluralize(cart.errors.count, "error") %> prohibited this cart from being saved:</h2>
 
       <ul>

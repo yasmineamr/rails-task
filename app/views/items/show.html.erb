@@ -1,51 +1,54 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @item.title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @item.description %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @item.price %>
-</p>
-
-<p>
-  <strong>Type:</strong>
-  <%= @item.item_type %>
-</p>
+<div class="thumbnail">
+    <div class="caption-full">
+        <h4 class="pull-right"> <%= number_to_currency @item.price %></h4>
+        <h4><%= @item.title %></h4>
+        <p><%= @item.description %></p>
+    </div>
+</div>
 
 <%= link_to 'Photo Gallery', item_photos_path(item_id: @item.id) %> |
 <%= link_to 'Trailers & Videos', item_videos_path(item_id: @item.id) %>
+<br>
+<br>
+<%= button_to 'Add To Cart', line_items_path(item_id: @item.id), class: "btn btn-success" %>
+<br>
+<h4> Sharing is Caring </h4>
+<%= social_share_button_tag(current_user ? current_user.share_text : '', :url => "http://localhost:3000/items/#{@item.id}") %>
+<br>
+<div class="well">
 
-<h3>Reviews: </h3>
-  <% if @reviews.count != 0 %>
-    <% @reviews.each do |review| %>
-      <%= User.find(review.user_id).name %> : Rated <%= review.rate %> |
-      <%= review.text %>
-      <% if current_user && current_user.id == review.user_id %>
-        <td><%= link_to 'Edit', edit_item_review_path(id:review,item_id: @item.id) %></td> |
-        <td><%= link_to 'Delete', item_review_path(id:review,item_id: @item.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      <% end %>
-      <hr>
+    <div class="text-left">
+    <% len = @reviews.size %>
+    <% if len == 0 %>
+        <p>No Reviews to show</p>
     <% end %>
-  <% else %>
-    <p>No Reviews.</p>
-  <% end %>
+    </div>
 
-  <% if current_user %>
-  <%= render :partial => 'reviews/form', locals: { review: @review, item: @item } %>
-  <% end %>
+    <% @reviews.each do |review| %>
+        <hr>
 
-share on facebook: 
-  <%= social_share_button_tag(current_user ? current_user.share_text : '', :url => "http://localhost:3000/items/#{@item.id}") %>
+        <div class="row">
+            <div class="col-md-12">
+              <span>
+                <span style="font-size:140%;"><%= review.rate %>
+                <span style="font-size:60%;"> / 5</span></span>
+                <span style="font-size:140%;">&bigstar;</span>
+              </span>
+                <strong><%= User.find(review.user_id).name %></strong>
+                <span class="pull-right">
+                    <% if current_user && current_user.id == review.user_id %>
+                        <td><%= link_to 'Edit', edit_item_review_path(id:review,item_id: @item.id), class: "btn btn-primary"%></td>
+                        <td><%= link_to 'Delete', item_review_path(id:review,item_id: @item.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+                    <% end %>
+                </span>
+                <p><%= review.text %></p>
+            </div>
+        </div>
+    <% end %>
 
-<% if current_user %>
-  <%= button_to 'Add To Cart', line_items_path(item_id: @item.id) %> |
-<% end %>
-<%= link_to 'Back', landing_index_path %>
+    <hr>
+    <% if current_user %>
+    <%= render :partial => 'reviews/form', locals: { review: @review, item: @item } %>
+    <% end %>
+</div>
