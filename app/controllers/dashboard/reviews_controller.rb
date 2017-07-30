@@ -15,8 +15,4 @@ class Dashboard::ReviewsController < DashboardController
     def set_item
       @item = Item.find(params[:item_id])
     end
-
-    def review_params
-      params.require(:review).permit(:item_id, :text, :rate)
-    end
 end

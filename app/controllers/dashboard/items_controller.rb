@@ -7,7 +7,7 @@ class Dashboard::ItemsController < DashboardController
   end
 
   def show
-    @reviews = Review.where(item: params[:id])
+    @reviews = @item.reviews
     @review = Review.new
   end
 

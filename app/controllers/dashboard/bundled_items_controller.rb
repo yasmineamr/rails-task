@@ -20,44 +20,26 @@ class Dashboard::BundledItemsController < DashboardController
   end
 
   def edit
-    @items = Item.all
-    item_ids = @bundled_item.set_items.map(&:item_id)
-
-    @items.each do |item|
-      if !(item_ids.include? item.id)
-        @bundled_item.set_items.build(item: item)
-      end
-    end
+    build_items
   end
 
   def create
     @bundled_item = BundledItem.new(bundled_item_params)
-    item_ids = @bundled_item.set_items.map(&:item_id)
 
     if @bundled_item.save
       redirect_to dashboard_bundled_items_path
     else
-      @items = Item.all
-      @items.each do |item|
-        if !(item_ids.include? item.id)
-          @bundled_item.set_items.build(item: item)
-        end
-      end
+      build_items
       render :new
     end
   end
 
   def update
-    item_ids = @bundled_item.set_items.map(&:item_id)    
+    item_ids = @bundled_item.set_items.map(&:item_id)
     if @bundled_item.update(bundled_item_params)
-      redirect_to dashboard_bundled_item_path(@bundled_item), notice: 'Bundled item was successfully updated.' 
+      redirect_to dashboard_bundled_item_path(@bundled_item), notice: 'Bundled item was successfully updated.'
     else
-      @items = Item.all
-      @items.each do |item|
-        if !(item_ids.include? item.id)
-          @bundled_item.set_items.build(item: item)
-        end
-      end
+      build_items
       render :edit
     end
   end
@@ -68,6 +50,16 @@ class Dashboard::BundledItemsController < DashboardController
   end
 
   private
+    def build_items
+      @items = Item.all
+      item_ids = @bundled_item.set_items.map(&:item_id)
+      @items.each do |item|
+        if !(item_ids.include? item.id)
+          @bundled_item.set_items.build(item: item)
+        end
+      end
+    end
+
     def set_bundled_item
       @bundled_item = BundledItem.find(params[:id])
     end
@@ -85,4 +77,5 @@ class Dashboard::BundledItemsController < DashboardController
       logger.error "Attempt to access invalid method"
       redirect_to dashboard_items_path, notice: 'Invalid Method'
     end
+
 end
