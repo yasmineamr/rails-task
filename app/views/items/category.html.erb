@@ -3,7 +3,7 @@
 <% else %>
   <h1>&nbsp;&nbsp; <%= @category.titleize %></h1>
 
-  <% if @items.size == 0 %>
+  <% if @items.empty? %>
   <br>
     <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No  Items to view in this category </h4>
   <% else %>

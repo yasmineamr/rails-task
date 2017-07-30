@@ -1,29 +1,43 @@
-
-<div class="form-group">
-  <strong>Title:</strong>
-  <%= @item.title %>
+<div class="row" >
+  <div class="col-md-2">
+    <strong>Title:</strong>
+  </div>
+  <div class="col-md-10">
+    <%= @item.title %>
+  </div>
 </div>
-
-<div class="form-group">
-  <strong>Description:</strong>
-  <%= @item.description %>
+<div class="row" >
+  <div class="col-md-2">
+    <strong>Description:</strong>
+  </div>
+  <div class="col-md-10">
+    <%= @item.description %>
+  </div>
 </div>
-
-<div class="form-group">
-  <strong>Price:</strong>
-  <%= @item.price %>
+<div class="row" >
+  <div class="col-md-2">
+    <strong>Price:</strong>
+  </div>
+  <div class="col-md-10">
+    <%= @item.price %>
+  </div>
 </div>
-
-<div class="form-group">
-  <strong>Type:</strong>
-  <%= @item.item_type %>
+<div class="row" >
+  <div class="col-md-2">
+    <strong>Type:</strong>
+  </div>
+  <div class="col-md-10">
+    <%= @item.item_type %>
+  </div>
 </div>
-
-<div class="form-group">
-  <strong>Is featured:</strong>
-  <%= @item.is_featured %>
+<div class="row" >
+  <div class="col-md-2">
+    <strong>Is featured:</strong>
+  </div>
+  <div class="col-md-10">
+    <%= @item.is_featured %>
+  </div>
 </div>
-
 <%= link_to 'Edit', edit_dashboard_item_path(@item), class: 'btn btn-default'  %>
 
 <%= link_to 'Photo Gallery', dashboard_item_photos_path(item_id: @item.id), class: 'btn btn-default' %>

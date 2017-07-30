@@ -3,8 +3,8 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
-	$('.qtn_field').on 'keyup', ->
-		$row = $(this).closest('tr')
-		qtn = $(this).val()*1.0
-		price = parseFloat($row.find('.price').eq(0).text().substring(1))
-		$row.find('.item_total').eq(0).text('$' + (price * qtn).toFixed(2))
+  $('.qtn_field').on 'keyup', ->
+    $row = $(this).closest('tr')
+    qtn = $(this).val()*1.0
+    price = parseFloat($row.find('.price').eq(0).text().split('$')[1])
+    $row.find('.item_total').eq(0).text('$' + (price * qtn).toFixed(2))

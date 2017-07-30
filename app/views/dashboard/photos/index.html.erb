@@ -1,22 +1,27 @@
-
-<h1>Photo Gallery</h1>
+<h1>
+  <%= link_to dashboard_item_path @item do %>
+    <span><%= "#{@item.title}'s"%></span>
+  <% end %>
+  <span>Photo Gallery</span>
+</h1>
 <%= link_to 'Add Photo', new_dashboard_item_photo_path(item_id: @item), class: "btn btn-primary" %>
 <br>
 <br>
-<% if @photos.count == 0 %>
+<% if @photos.empty? %>
   <p>No Photos to show </p>
 <% else %>
   <% @photos.in_groups_of(3) do |group| %>
     <div class="row">
       <% group.compact.each do |photo| %>
-        <div class="col-xs-4">
-          <%= image_tag photo.file.display if photo.file.present?%>
-          <h4><%= link_to 'View', dashboard_item_photo_path(id: photo.id, item_id: @item), class: "btn btn-default" %></h4>
+        <div class="col-xs-4 image-box">
+          <%= link_to dashboard_item_photo_path(id: photo.id, item_id: @item) do %>
+            <%= image_tag photo.file.display %>
+            <br>
+            <div class="btn btn-default image-box-link">View</div>
+          <%end%>
         </div>
       <% end %>
     </div>
   <% end %>
 <% end %>
-
-
 <br>
